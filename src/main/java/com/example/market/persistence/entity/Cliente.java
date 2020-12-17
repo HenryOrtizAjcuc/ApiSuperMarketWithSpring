@@ -1,9 +1,9 @@
 package com.example.market.persistence.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.context.annotation.EnableMBeanExport;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "clientes")
@@ -11,7 +11,6 @@ public class Cliente {
 
     @Id
     private String id;
-
     private String nombre;
     private String apellidos;
     private Integer celular;
@@ -19,6 +18,9 @@ public class Cliente {
 
     @Column(name = "correo_electronico")
     private String correoElectronico;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Compra> compras;
 
     public String getId() {
         return id;
